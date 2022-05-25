@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+bool isBalanced(string expression) 
+{
+    stack<char> s;
+    char x;
+    
+    if(expression.length()==0)
+        return true;
+    //if their is any closing bracket in starting only then its not balanced so false
+    if(expression[0]==')' || expression[0]=='}')
+        return false;
+    //traversing upon expression
+    for(int i=0;i<expression.length();i++)
+    {
+        //now pushing the opening brackets
+        if(expression[i]=='(' || expression[i]=='{')
+            s.push(expression[i]);
+        //now checking for balance
+        if(expression[i]==')')
+        {
+            x=s.top();
+            s.pop();
+            if(x=='}')
+                return false;
+        }
+        else if(expression[i]=='}')
+        {
+            x=s.top();
+            s.pop();
+            if(x==')')
+                return false;
+        }
+    }
+    // Check Empty Stack
+    return s.empty();
+}
