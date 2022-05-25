@@ -1,0 +1,56 @@
+class Stack {
+	Node* head;
+    int size;
+   public:
+    Stack() {
+        head=NULL;
+        size=0;
+    }
+
+	/*----------------- Public Functions of Stack -----------------*/
+
+    int getSize() {
+        return size;
+    }
+
+    bool isEmpty() {
+        if(size==0)
+            return true;
+        else
+            return false;
+    }
+
+    void push(int element) {
+        Node* newnode = new Node(element);
+        if(head==NULL)
+        {
+            head=newnode;
+            size++;
+        }
+        else
+        {
+            newnode->next=head;
+            head=newnode;
+            size++;
+        }
+    }
+
+    int pop() {
+        if(head==NULL)
+            return -1;
+        else
+        {
+            int ans=head->data;
+            head=head->next;
+            size--;
+            return ans;
+        }
+    }
+
+    int top() {
+        if(head==NULL)
+            return -1;
+        else
+            return head->data;
+    }
+};
