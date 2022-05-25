@@ -1,0 +1,8 @@
+void reverseStack(stack<int> &input, stack<int> &extra) {
+    while(input.empty()==false)
+    {
+        extra.push(input.top());
+        input.pop();
+    }
+    input=extra;//just point the input pointer on the newly formed extra stack
+}
