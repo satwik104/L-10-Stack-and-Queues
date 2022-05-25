@@ -1,0 +1,35 @@
+#include<stack>
+int countBracketReversals(string input) 
+{
+	if(input.length() % 2!=0)//if no. of brackets are odd then surely its imbalanced forever
+        return -1;
+    stack<char> s;
+    for(int i=0; i<input.length(); i++)
+    {
+       if(input[i]=='{')
+            s.push(input[i]);
+        else 
+        {
+            if(!s.empty() && s.top()=='{')//
+                s.pop();
+            else
+                s.push(input[i]);
+        }
+    }
+    //till now all the balanced pairs are removed from string..which were in this format {}
+    //now remaining can be in the formates like- {{....or }{
+    //so for first format we have to make one revrsal...and for second two reversals
+    int x=0;
+    while(s.empty()==false)
+    {
+        char c1 = s.top();
+        s.pop();
+        char c2 = s.top();
+        s.pop();
+        if(c1==c2)
+            x++;
+        else
+            x=x+2;
+    }
+    return x;
+}
